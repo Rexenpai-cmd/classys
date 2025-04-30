@@ -51,7 +51,7 @@ body{
     font-family: 'Poppins', sans-serif;
     font-size: 0.88rem;
     user-select: none;
-    -x: hidden;
+    overflow-x: hidden;
     color: var(--color-dark);
     background-color: var(--color-background);
 }
@@ -121,174 +121,82 @@ b{
     grid-template-columns: 12rem auto 23rem;
 }
 
-main .analyse{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.6rem;
+aside{
+    height: 100vh;
 }
 
-main .analyse > div{
-    background-color: var(--color-white);
-    padding: var(--card-padding);
-    border-radius: var(--card-border-radius);
-    margin-top: 1rem;
-    box-shadow: var(--box-shadow);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-main .analyse > div:hover{
-    box-shadow: none;
-}
-
-main .analyse > div .status{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-main .analyse h3{
-    margin-left: 0.6rem;
-    font-size: 1rem;
-}
-
-main .analyse .progresss{
-    position: relative;
-    width: 92px;
-    height: 92px;
-    border-radius: 50%;
-}
-
-main .analyse svg{
-    width: 7rem;
-    height: 7rem;
-}
-
-main .analyse svg circle{
-    fill: none;
-    stroke-width: 10;
-    stroke-linecap: round;
-    transform: translate(5px, 5px);
-}
-
-main .analyse .sales svg circle{
-    stroke: var(--color-success);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .visits svg circle{
-    stroke: var(--color-danger);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .searches svg circle{
-    stroke: var(--color-primary);
-    stroke-dashoffset: -30;
-    stroke-dasharray: 200;
-}
-
-main .analyse .progresss .percentage{
-    position: absolute;
-    top: -3px;
-    left: -1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-}
-
-main .new-users{
-    margin-top: 1.3rem;
-}
-
-main .new-users .user-list{
-    background-color: var(--color-white);
-    padding: var(--card-padding);
-    border-radius: var(--card-border-radius);
-    margin-top: 1rem;
-    box-shadow: var(--box-shadow);
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 1.4rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-main .new-users .user-list:hover{
-    box-shadow: none;
-}
-
-main .new-users .user-list .user{
+aside .sidebar{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-main .new-users .user-list .user img{
-    width: 3.8rem;
-    height: 3.8rem;
-    margin-bottom: 0.4rem;
-    border-radius: 50%;
-}
-
-main .new-users .user-list .user i {
-    font-size: 40px;
-    margin-bottom: 5px;
-    padding: 5px;
-    cursor: pointer;
-}
-
-main .new-users .user-list .user h3 {
-    font-weight: 500;
-    font-size: 14px !important;
-}
-
-main .new-users .user-list .user p {
-    font-size: 12px !important;
-}
-
-main .recent-orders{
-    margin-top: 1.3rem;
-}
-
-main .recent-orders h2{
-    margin-bottom: 0.8rem;
-}
-
-main .recent-orders table{
     background-color: var(--color-white);
-    width: 100%;
-    padding: var(--card-padding);
-    text-align: center;
     box-shadow: var(--box-shadow);
-    border-radius: var(--card-border-radius);
+    border-radius: 15px;
+    height: 88vh;
+    position: relative;
+    padding-top: 20px !important;
+    margin-top: 0px !important;
     transition: all 0.3s ease;
 }
 
-main .recent-orders table:hover{
+aside .sidebar:hover{
     box-shadow: none;
 }
 
-main table tbody td{
-    height: 2.8rem;
-    border-bottom: 1px solid var(--color-light);
-    color: var(--color-dark-variant);
+aside .sidebar a{
+    display: flex;
+    align-items: center;
+    color: var(--color-info-dark);
+    height: 3.7rem;
+    gap: 1rem;
+    position: relative;
+    margin-left: 2rem;
+    transition: all 0.3s ease;
 }
 
-main table tbody tr:last-child td{
-    border: none;
+aside .sidebar a span, i{
+    font-size: 1.6rem;
+    transition: all 0.3s ease;
 }
 
-main .recent-orders a{
-    text-align: center;
-    display: block;
-    margin: 1rem auto;
+aside .sidebar a:last-child{
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+}
+
+aside .sidebar a.active{
+    width: 100%;
     color: var(--color-primary);
+    background-color: var(--color-light);
+    margin-left: 0;
+}
+
+aside .sidebar a.active::before{
+    content: '';
+    width: 6px;
+    height: 18px;
+    background-color: var(--color-primary);
+}
+
+aside .sidebar a.active span{
+    color: var(--color-primary);
+    margin-left: calc(1rem - 3px);
+}
+
+aside .sidebar a:hover{
+    color: var(--color-primary);
+}
+
+aside .sidebar a:hover span{
+    margin-left: 0.6rem;
+}
+
+aside .sidebar .message-count{
+    background-color: var(--color-danger);
+    padding: 2px 6px;
+    color: var(--color-white);
+    font-size: 11px;
+    border-radius: var(--border-radius-1);
 }
 
 @media screen and (max-width: 1200px) {

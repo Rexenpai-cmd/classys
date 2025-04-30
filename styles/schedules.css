@@ -22,6 +22,7 @@
 
     --box-shadow: 0 2rem 3rem var(--color-light);
     --input-border: #cccccc;
+    --secondary-btn-background: #e4e4e4;
     --modal-background: #b3b3b350;
 }
 
@@ -35,6 +36,7 @@
     --color-table-outline: #282e31;
     --input-border: #394246;
     --modal-background: rgba(0, 0, 0, 0.555);
+    --secondary-btn-background: #30373b;
 }
 
 *{
@@ -130,6 +132,39 @@ body{
     background-color: var(--color-background);
 }
 
+.alert-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    justify-content: center;
+    top: -60px;
+    left: 0;
+    z-index: 100;
+    transition: top 0.5s ease;
+}
+
+.alert-container.show {
+    top: 20px;
+}
+
+.message {
+    min-width: 300px;
+    min-height: 60px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #28282B;
+    border-radius: 10px;
+}
+
+.message p {
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
 .container {
     display: grid;
     grid-template-columns: 12rem 1fr 0rem !important ; /* Use 1fr to let the middle column take available space */
@@ -165,19 +200,22 @@ body{
     align-items: center;
     margin-bottom: 10px;
     position: sticky;
+    justify-content: space-between;
 }
 
 .actions-container button {
     background-color: var(--color-primary);
     color: white;
     padding: 8px 20px;
-    gap: 10px;
+    gap: 5px;
     border-radius: 50px;
     font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
 }
 
 .actions-container button i {
-    margin-right: 7px;
+    font-size: 16px;
 }
 
 .scrollable-table {
@@ -210,15 +248,17 @@ body{
 }
 
 .schedule-table button {
-    color: var(--color-primary);
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 0.3rem;
+    padding: 5px;
     background-color: transparent;
+    cursor: pointer;
 }
 
-.schedule-table button:last-child {
+.schedule-table button i {
+    color: var(--color-primary);
+    font-size: 18px;
+}
+
+.schedule-table button:last-child i {
     color: var(--color-danger);
 }
 
@@ -319,6 +359,7 @@ body{
     background-color: var(--color-white);
     max-height: 150px;
     overflow-y: auto;
+    height: 100px;
 }
 .menu-item {
     padding: 10px;
@@ -420,6 +461,90 @@ body{
     text-decoration: none;
     cursor: pointer;
 }
+
+.deleteModal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.05);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.deleteModal.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.deleteModalContent {
+    background-color: var(--color-white);
+    height: 340px;
+    width: 350px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transform: translateY(-20px);
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.deleteModal.show .deleteModalContent {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.deleteModalContent .icon {
+    padding: 15px;
+    background-color: rgba(255, 0, 0, 0.089);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.deleteModalContent .icon i {
+    font-size: 22px;
+    color: var(--color-danger);
+}
+
+.deleteModalContent .deleteButtons {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.deleteButtons button {
+    background-color: var(--color-danger);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+}
+
+.deleteButtons button:last-child {
+    background-color: var(--secondary-btn-background);
+    color: var(--color-dark);
+}
+
 
 @media screen and (max-width: 768px) {
     .container{

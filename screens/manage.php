@@ -15,18 +15,23 @@ $user = 'root';
 $pass = '';
 
 try {
-    // Create a new PDO instance
-    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // Create a new PDO instance
+        $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Fetch classes from the database
-    $stmt = $pdo->prepare("SELECT course, year, section FROM class");
-    $stmt->execute();
-    $classes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "Database error: " . $e->getMessage();
-    exit;
-}
+        // Fetch classes from the database
+        $stmtClasses = $pdo->prepare("SELECT id, course, year, section FROM class");
+        $stmtClasses->execute();
+        $classes = $stmtClasses->fetchAll(PDO::FETCH_ASSOC);
+
+        // Fetch rooms from the room table
+        $stmtRooms = $pdo->prepare("SELECT id, room FROM room");
+        $stmtRooms->execute();
+        $rooms = $stmtRooms->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Database error: " . $e->getMessage();
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -83,10 +88,15 @@ try {
                                     <td><?php echo htmlspecialchars($class['year']); ?></td>
                                     <td><?php echo htmlspecialchars($class['section']); ?></td>
                                     <td>
-                                        <button id="editClass" class="edit-button">
+                                        <button class="editClass edit-button"
+                                            data-id="<?php echo htmlspecialchars($class['id']); ?>"
+                                            data-course="<?php echo htmlspecialchars($class['course']); ?>"
+                                            data-year="<?php echo htmlspecialchars($class['year']); ?>"
+                                            data-section="<?php echo htmlspecialchars($class['section']); ?>">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
-                                        <button id="deleteClass" class="delete-button">
+
+                                        <button class="deleteClass delete-button">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </td>
@@ -113,17 +123,21 @@ try {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;">BSIT 4D</td>
-                                <td>
-                                        <button id="editRoom">
+                            <?php foreach ($rooms as $room): ?>
+                                <tr>
+                                    <td style="border: 1px solid #ddd; padding: 8px;"><?php echo htmlspecialchars($room['room']); ?></td>
+                                    <td>
+                                        <button class="editRoom"
+                                            data-id="<?php echo htmlspecialchars($room['id']); ?>"
+                                            data-room="<?php echo htmlspecialchars($room['room']); ?>">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
-                                        <button id="deleteRoom">
+                                        <button class="deleteRoom" data-id="<?php echo $room['id']; ?>">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -135,15 +149,15 @@ try {
                     <h2>Enter Class</h2>
                     <form id="addClassForm">
                         <div class="floating-label">
-                            <input type="text" id="course" placeholder=" " required autocomplete="off" />
+                            <input type="text" id="addCourse" placeholder=" " required autocomplete="off" />
                             <label for="course">Course</label>
                         </div>
                         <div class="floating-label">
-                            <input type="text" id="year" placeholder=" " required autocomplete="off" />
+                            <input type="number" id="addYear" placeholder=" " required autocomplete="off" />
                             <label for="year">Enter Year</label>
                         </div>
                         <div class="floating-label">
-                            <input type="text" id="section" placeholder=" " required autocomplete="off" />
+                            <input type="text" id="addSection" placeholder=" " required autocomplete="off" />
                             <label for="section">Enter Section</label>
                         </div>
                         <div class="deleteButtons">
@@ -158,13 +172,13 @@ try {
              <div class="addRoomModal" id="addRoomModal">
                 <div class="addRoomModalContent">
                     <h2>Enter Room</h2>
-                    <form action="">
+                    <form action="" id="addRoomForm">
                         <div class="floating-label">
                             <input type="text" id="room" placeholder=" " required autocomplete="off"/>
                             <label for="room">Room Name</label>
                         </div>
                         <div class="deleteButtons">
-                            <button id="saveRoom">Save</button>
+                            <button type="submit" id="saveRoom">Save</button>
                             <button id="cancelAddRoom">Cancel</button>
                         </div>
                     </form>
@@ -176,20 +190,21 @@ try {
                 <div class="editClassModalContent">
                     <h2>Edit Class</h2>
                     <form action="">
+                        <input type="hidden" id="classId" name="classId" />
                         <div class="floating-label">
-                            <input type="text" id="course" value="Your Course Name" placeholder=" " autocomplete="off" readonly />
+                            <input type="text" id="editCourse" placeholder=" " autocomplete="off" />
                             <label for="course">Course</label>
                         </div>
                         <div class="floating-label">
-                            <input type="text" id="year" placeholder=" " autocomplete="off"/>
+                            <input type="text" id="editYear" placeholder=" " autocomplete="off"/>
                             <label for="year">Enter Year</label>
                         </div>
                         <div class="floating-label">
-                            <input type="text" id="section" placeholder=" " autocomplete="off"/>
+                            <input type="text" id="editSection" placeholder=" " autocomplete="off"/>
                             <label for="section">Enter Section</label>
                         </div>
                         <div class="deleteButtons">
-                            <button id="confirmEditClass">Save</button>
+                            <button type="button" id="confirmEditClass">Save</button>
                             <button id="cancelEditClass">Cancel</button>
                         </div>
                     </form>
@@ -202,12 +217,12 @@ try {
                     <h2>Edit Room</h2>
                     <form action="">
                         <div class="floating-label">
-                            <input type="text" id="room" placeholder=" " autocomplete="off"/>
-                            <label for="room">Room</label>
+                            <input type="text" id="editRoom" placeholder=" " autocomplete="off"/>
+                            <label for="editRoom">Room</label>
                         </div>
                         <div class="deleteButtons">
-                            <button id="confirmEditRoom">Save</button>
-                            <button id="cancelEditRoom">Cancel</button>
+                            <button type="button" id="confirmEditRoom">Save</button>
+                            <button type="button" id="cancelEditRoom">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -222,13 +237,14 @@ try {
                     <h2>Are You Sure?</h2>
                     <p>Are you sure you want to delete this class?</p>
                     <p>This action cannot be undone</p>
+                    <input type="hidden" id="classIdInput">
                     <div class="deleteClassButtons">
                         <button id="confirmDeleteClass">Delete Class</button>
                         <button id="cancelDeleteClass">Cancel</button>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Delete Room Modal -->
             <div class="deleteRoomModal" id="deleteRoomModal">
                 <div class="deleteRoomModalContent">
@@ -256,4 +272,4 @@ try {
     <script src="../index.js"></script>
 </body>
 
-</html>
+</html>s

@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 
 // Pagination variables
 $itemsPerPage = 10; // Number of items per page
-$totalItemsQuery = "SELECT COUNT(*) as count FROM subject";
+$totalItemsQuery = "SELECT COUNT(*) as count FROM subjects";
 $totalItemsResult = $conn->query($totalItemsQuery);
 $totalItems = $totalItemsResult->fetch_assoc()['count'];
 $totalPages = ceil($totalItems / $itemsPerPage);
@@ -29,7 +29,7 @@ $currentPage = max(1, min($currentPage, $totalPages)); // Ensure current page is
 $offset = ($currentPage - 1) * $itemsPerPage;
 
 // Query to fetch subjects
-$sql = "SELECT id, section_code, subject_code, subject_title, year, unit FROM subject LIMIT $offset, $itemsPerPage";
+$sql = "SELECT id, section_code, subject_code, subject_title, year, unit FROM subjects LIMIT $offset, $itemsPerPage";
 $result = $conn->query($sql);
 
 $subjects = [];

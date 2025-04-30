@@ -9,13 +9,18 @@ if ($conn->connect_error) {
     exit;
 }
 
+// Get the form data
 $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 $firstname = $_POST['firstname'];
 $lastname = $_POST['lastname'];
 
-$stmt = $conn->prepare("INSERT INTO users (email, password, name, lname) VALUES (?, ?, ?, ?)");
-$stmt->bind_param("ssss", $email, $password, $firstname, $lastname);
+// Get the current timestamp
+$timestamp = date('Y-m-d H:i:s');
+
+// Prepare and bind the query to insert the data
+$stmt = $conn->prepare("INSERT INTO users (email, password, name, lname, timestamp) VALUES (?, ?, ?, ?, ?)");
+$stmt->bind_param("sssss", $email, $password, $firstname, $lastname, $timestamp);
 
 if ($stmt->execute()) {
     echo "Registration successful!";
@@ -24,6 +29,7 @@ if ($stmt->execute()) {
     echo "Registration failed. Email might already be in use.";
 }
 
+// Close the statement and connection
 $stmt->close();
 $conn->close();
 ?>

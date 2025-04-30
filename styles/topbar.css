@@ -17,9 +17,13 @@
     --border-radius-2: 1.2rem;
 
     --card-padding: 1.8rem;
+    --input-border: #cccccc;
+    --secondary-btn-background: #e4e4e4;
     --padding-1: 1.2rem;
 
     --box-shadow: 0 2rem 3rem var(--color-light);
+    --card-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1), 0px 6px 12px rgba(0, 0, 0, 0.08);
+
 }
 
 .dark-mode-variables{
@@ -29,6 +33,11 @@
     --color-dark-variant: #a3bdcc;
     --color-light: rgba(0, 0, 0, 0.4);
     --box-shadow: 0 2rem 3rem var(--color-light);
+    --input-border: #394246;
+    --modal-background: rgba(0, 0, 0, 0.555);
+    --card-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.178), 0px 6px 12px rgba(0, 0, 0, 0.253);
+
+    --secondary-btn-background: #30373b;
 }
 
 *{
@@ -150,7 +159,7 @@ b{
     gap: 20px;
 }
 
-.nav button{
+.nav .toggle button{
     display: none;
 }
 
@@ -184,6 +193,7 @@ b{
     display: flex;
     gap: 2rem;
     text-align: right;
+    position: relative;
 }
 
 .nav .profile .profile-photo{
@@ -191,6 +201,170 @@ b{
     height: 2.8rem;
     border-radius: 50%;
     overflow: hidden;
+}
+
+.profile-container {
+    display: none;
+    position: absolute;
+    top: 120%; /* Adjust as needed */
+    right: 10px;
+    background: var(--color-white);
+    box-shadow: var(--card-border-radius);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    gap: 5px;
+    width: 200px;
+    z-index: 100;
+    border-radius: 5px;
+}
+
+.profile-container .item {
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+
+}
+
+.profile-container .item:hover {
+    background-color: var(--color-light);
+    transition: all 0.3s ease;
+}
+
+.profile-container .item:hover p {
+    padding-right: 20px;
+    transition: all 0.3s ease;
+    color: var(--color-primary);
+
+}
+
+.update-container {
+    display: none;
+    position: absolute;
+    top: 120%; /* Adjust as needed */
+    right: 10px;
+    background: var(--color-white);
+    box-shadow: var(--card-box-shadow);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    gap: 5px;
+    width: 280px;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 15px;
+    z-index: 100;
+    border-radius: 5px;
+}
+
+.change-container {
+    display: none;
+    position: absolute;
+    top: 120%; /* Adjust as needed */
+    right: 10px;
+    background: var(--color-white);
+    box-shadow: var(--card-box-shadow);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    gap: 5px;
+    z-index: 100;
+    width: 280px;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.update-container h3, .change-container h3 {
+    font-size: 16px;
+    text-align: start;
+    margin-bottom: 10px;
+}
+
+.floating-label {
+    position: relative;
+    margin-bottom: 20px;
+}
+  
+.floating-label input {
+    width: 100%;
+    padding: .8rem 1.5rem;
+    font-size: 1rem;
+    border: 1px solid var(--input-border);
+    border-radius: 50px;
+    outline: none;
+    background-color: transparent;
+    font-size: 14px;
+    color: var(--color-dark-variant);
+    font-family: 'Poppins', sans-serif;
+}
+
+.floating-label input:focus {
+    border: 1.5px solid var(--color-primary);
+}
+  
+.floating-label label {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    background-color: var(--color-white);
+    padding: 0 0.25rem;
+    transition: 0.2s ease all;
+    pointer-events: none;
+    font-size: 14px;
+}
+  
+.floating-label input:focus + label,
+.floating-label input:not(:placeholder-shown) + label {
+    top: -0.6rem;
+    left: 1rem;
+    font-size: 12px;
+    color: var(--color-primary);
+    transform: none;
+}
+
+.actions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.actions button {
+    width: 100%;
+    padding: 12px;
+    text-align: center !important;
+    border-radius: 50px;
+    background-color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.actions button p {
+    font-size: 12px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.actions button:last-child {
+    background-color: var(--secondary-btn-background);
+    color: var(--color-dark-variant);
+}
+
+.actions button:last-child p {
+    color: var(--color-dark-variant);
+}
+
+.profile-container.active {
+    display: block;
+}
+
+.update-container.active {
+    display: block;
+}
+
+.change-container.active {
+    display: block;
 }
 
 @media screen and (max-width: 1200px) {

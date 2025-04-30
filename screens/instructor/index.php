@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../index.php");
+    header("Location: ../../index.php");
     exit;
 }
 
@@ -41,15 +41,14 @@ $result = $stmt->get_result();
 ?>
 
 <head>
-    <link rel="stylesheet" href="../styles/my-schedules.css">
+    <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
-
-    <?php include '../components/topbar.php'; ?>
+    <?php include './components/topbar.php'; ?>
 
     <div class="container">
-        <?php include '../components/sidebar.php'; ?>
+        <?php include './components/sidebar.php'; ?>
 
         <div class="schedules-container">
             <div class="header">
@@ -107,6 +106,6 @@ $result = $stmt->get_result();
         </div>
     </div>
 
-    <script src="../index.js"></script>
-    <script src="../orders.js"></script>
+    <script src="../../index.js"></script>
+    <script src="../../orders.js"></script>
 </body>

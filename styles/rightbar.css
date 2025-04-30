@@ -70,6 +70,23 @@
     width: 100%;
 }
 
+.right-section .reminders .notification .content .room {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    text-align: end;
+}
+
+.right-section .reminders .notification .content .room p{
+    font-size: 12px;
+    color: var(--color-dark);
+}
+
+.right-section .reminders .notification .content .room p:last-child {
+    color: var(--color-dark);
+    font-weight: 500;
+}
+
 .right-section .reminders .notification .icon{
     padding: 0.6rem;
     color: var(--color-white);

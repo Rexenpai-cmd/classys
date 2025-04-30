@@ -39,10 +39,17 @@ body {
 }
 .loader {
     display: none;
+    position: absolute;
     z-index: 200;
-    height: 200px;
+    height: 70px;
     width: 200px;
-    background-color: red;
+    background-color: #28282B;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 20px;
+    color: white;
 }
 .container {
     position: relative;

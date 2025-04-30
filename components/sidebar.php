@@ -24,7 +24,6 @@ $current_page = basename($_SERVER['PHP_SELF']); // Get the current page name
         <a href="subjects.php" data-url="subjects.php" class="<?php echo ($current_page == 'subjects.php') ? 'active' : ''; ?>">
             <span class="material-symbols-outlined">view_agenda</span>
             <h3>Subjects</h3>
-            <span class="message-count">27</span>
         </a>
         <a href="instructors.php" data-url="instructors.php" class="<?php echo ($current_page == 'instructors.php') ? 'active' : ''; ?>">
             <span class="material-icons-sharp">person</span>
@@ -34,7 +33,7 @@ $current_page = basename($_SERVER['PHP_SELF']); // Get the current page name
             <span class="material-icons-sharp">settings</span>
             <h3>Manage</h3>
         </a>
-        <a href="logout.php" data-url="logout.php" class="<?php echo ($current_page == 'logout.php') ? 'active' : ''; ?>">
+        <a href="../db/logout.php" data-url="../db/logout.php" class="<?php echo ($current_page == '../db/logout.php') ? 'active' : ''; ?>">
             <span class="material-icons-sharp">logout</span>
             <h3>Logout</h3>
         </a>

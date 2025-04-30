@@ -95,20 +95,28 @@ document.getElementById("login-form").addEventListener("submit", async function 
         const result = await response.text();
         loader.style.display = "none";
 
+        const trimmed = result.trim().toLowerCase();
+
         if (response.ok) {
-            if (result.trim().toLowerCase() === "success") {
+            if (trimmed === "success") {
                 showAlert("Login successful!");
                 setTimeout(() => {
-                    window.location.href = "./screens/index.php"; // Change to your desired destination
-                }, 2000); // Wait for alert animation to finish
+                    window.location.href = "./screens/index.php";
+                }, 2000);
+            } else if (trimmed === "instructor") {
+                showAlert("Redirecting to Instructor Portal...");
+                setTimeout(() => {
+                    window.location.href = "./screens/instructor/index.php";
+                }, 2000);
             } else {
-                msg.textContent = result;
+                showAlert(result); // fallback for any other 2xx message
             }
         } else {
-            msg.textContent = "Login failed.";
+            showAlert(result); // 🔥 SHOW alert even for 401, 404, etc.
         }
+
     } catch (error) {
         loader.style.display = "none";
-        msg.textContent = "An error occurred. Please try again.";
+        showAlert("An error occurred. Please try again.");
     }
 });

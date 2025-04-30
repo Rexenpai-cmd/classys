@@ -59,16 +59,16 @@
         <div class="panels-container">
             <div class="panel left-panel">
                 <div class="content">
-                    <h3>Member of Brand?</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque accusantium dolor, eos incidunt minima iure?</p>
+                    <h3>Already Registered?</h3>
+                    <p>Click the button below to sign in</p>
                     <button class="btn" id="sign-in-btn">Sign in</button>
                 </div>
                 <img src="signin.svg" alt="" class="image">
             </div>
             <div class="panel right-panel">
                 <div class="content">
-                    <h3>New to Brand?</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque accusantium dolor, eos incidunt minima iure?</p>
+                    <h3>New to Classys?</h3>
+                    <p>Click the button below to sign up</p>
                     <button class="btn" id="sign-up-btn">Sign up</button>
                 </div>
                 <img src="signup.svg" alt="" class="image">

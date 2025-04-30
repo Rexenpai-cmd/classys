@@ -2,7 +2,7 @@
 
 :root{
     --color-primary: #6C9BCF;
-    --color-danger: #FF0060;
+    --color-danger: #bd1e1e;
     --color-success: #1B9C85;
     --color-warning: #F7D060;
     --color-white: #fff;
@@ -219,12 +219,16 @@ b{
 .main-content-container table th {
     width: 200px;
     text-align: center;
+    color: var(--color-info-dark);
+    font-weight: 500;
     border: none !important;
     border-bottom: 1.5px solid var(--color-table-outline) !important;
 }
 
 .main-content-container table td {
     text-align: center;
+    color: var(--color-dark-variant);
+    font-weight: 500;
     border: none !important;
     border-bottom: 1.5px solid var(--color-table-outline) !important;
 }

@@ -15,7 +15,7 @@ try {
         $subjectId = intval($_GET['id']); // Ensure it's an integer
 
         // Prepare the DELETE statement
-        $stmt = $pdo->prepare("DELETE FROM subject WHERE id = :id");
+        $stmt = $pdo->prepare("DELETE FROM subjects WHERE id = :id");
         $stmt->bindParam(':id', $subjectId, PDO::PARAM_INT);
 
         // Execute the statement

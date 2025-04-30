@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Prepare insert statement
-    $stmt = $conn->prepare("INSERT INTO subject (section_code, subject_code, subject_title, year, unit) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO subjects (section_code, subject_code, subject_title, year, unit) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssss", $section_code, $subject_code, $subject_title, $year, $unit);
 
     if ($stmt->execute()) {

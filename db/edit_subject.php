@@ -23,7 +23,7 @@ if (empty($id)) {
 }
 
 // Get current values
-$sql = "SELECT * FROM subject WHERE id = ?";
+$sql = "SELECT * FROM subjects WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -75,7 +75,7 @@ if (empty($updates)) {
 $types .= "i"; // for ID
 $params[] = $id;
 
-$updateSql = "UPDATE subject SET " . implode(", ", $updates) . " WHERE id = ?";
+$updateSql = "UPDATE subjects SET " . implode(", ", $updates) . " WHERE id = ?";
 $updateStmt = $conn->prepare($updateSql);
 $updateStmt->bind_param($types, ...$params);
 
