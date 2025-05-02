@@ -18,9 +18,12 @@ $lastname = $_POST['lastname'];
 // Get the current timestamp
 $timestamp = date('Y-m-d H:i:s');
 
+// Set the status value
+$status = 1;
+
 // Prepare and bind the query to insert the data
-$stmt = $conn->prepare("INSERT INTO users (email, password, name, lname, timestamp) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("sssss", $email, $password, $firstname, $lastname, $timestamp);
+$stmt = $conn->prepare("INSERT INTO users (email, password, name, lname, timestamp, status) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssssi", $email, $password, $firstname, $lastname, $timestamp, $status);
 
 if ($stmt->execute()) {
     echo "Registration successful!";

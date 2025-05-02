@@ -524,7 +524,7 @@ b{
         display: none;
     }
 
-    .nav button{
+    .nav .toggle button{
         display: inline-block;
         background-color: transparent;
         cursor: pointer;

@@ -70,7 +70,7 @@ $role = ($status == 0) ? "Admin" : (($status == 1) ? "Instructor" : "Unknown");
                 <small class="text-muted"><?php echo htmlspecialchars($role); ?></small>
             </div>
             <div class="profile-photo">
-                <img src="../../images/profile-1.jpg">
+                <img src="../../images/profile.png">
             </div>
         </div>
     </div>
