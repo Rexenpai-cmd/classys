@@ -145,12 +145,12 @@ if (isset($_GET['ajax'])) {
                     </div>
 
                     <div class="floating-label">
-                        <input type="text" id="year" name="year" placeholder=" " required autocomplete="off"/>
+                        <input type="number" id="year" name="year" placeholder=" " required autocomplete="off"/>
                         <label for="year">Year</label>
                     </div>
 
                     <div class="floating-label">
-                        <input type="text" id="unit" name="unit" placeholder=" " required autocomplete="off"/>
+                        <input type="number" id="unit" name="unit" placeholder=" " required autocomplete="off"/>
                         <label for="unit">Unit</label>
                     </div>
 
@@ -184,12 +184,12 @@ if (isset($_GET['ajax'])) {
                     </div>
 
                     <div class="floating-label">
-                        <input type="text" id="edityear" name="edityear" placeholder=" " required autocomplete="off"/>
+                        <input type="number" id="edityear" name="edityear" placeholder=" " required autocomplete="off"/>
                         <label for="year">Year</label>
                     </div>
 
                     <div class="floating-label">
-                        <input type="text" id="editunit" name="editunit" placeholder=" " required autocomplete="off"/>
+                        <input type="number" id="editunit" name="editunit" placeholder=" " required autocomplete="off"/>
                         <label for="unit">Unit</label>
                     </div>
 

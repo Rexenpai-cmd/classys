@@ -15,6 +15,10 @@ $current_page = basename($_SERVER['PHP_SELF']); // Get current file name, e.g. "
             <span class="material-icons-sharp">schedule</span>
             <h3>My Schedules</h3>
         </a>
+        <a href="today-schedules.php" data-url="today-schedules.php" class="<?php echo ($current_page == 'today-schedules.php') ? 'active' : ''; ?>">
+            <span class="material-icons-sharp">calendar_month</span>
+            <h3>Today's Schedules</h3>
+        </a>
         <a href="../../db/logout.php" data-url="../db/logout.php"
            class="<?php echo ($current_page === 'logout.php') ? 'active' : ''; ?>">
             <span class="material-icons-sharp">logout</span>
